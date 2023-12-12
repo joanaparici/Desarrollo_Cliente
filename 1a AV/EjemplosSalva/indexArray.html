@@ -1,0 +1,135 @@
+<html>
+    <body>
+    </body>
+    <script>
+        //-------------------------------
+        //Creación de Arrays
+        //-------------------------------
+        console.log("Creacion de los dos Arrays")
+
+        let nombres=["Pepe","Ana","Luis"]  //Notacion JSON
+        console.log(nombres)
+
+        let nombres2=new Array("Juan","Maria","Eva")  //Clase Array
+        console.log(nombres2)
+
+        //-------------------------------
+        //Contenido y acceso a los Arrays
+        //-------------------------------
+              
+        let nom=nombres2[10]  //El array nombre solo tiene 3 elementos, la posicion 10 es undefined
+        console.log("Acceso a posicion que no existe :" + nom)     //nom es undefined
+
+        
+        nombres2[10]="Diego" //Asignamos la posicion 10 con Diego
+        nom=nombres2[10] 
+        console.log("Acceso a posicion que se acaba de crear: " +  nom)    //nom ya no es undefined.
+
+        console.log("\nVer como ha quedado Array despues de insertar en posicion 10")
+        
+        console.log(nombres2)  //¿Que ha pasado con los huecos?. Ha creado 7 posiciones con el valor empty
+        nom=nombres2[7]
+        console.log("Acceso a posicion 'fantasma': " + nom)     //nom es undefined
+
+        //-------------------------------
+        //Se crean por Referencia
+        //-------------------------------
+        console.log("Igualdad de arrays por referencia. Los dos son iguales")
+        let nombres3=nombres  //Creamos nombres3 con los valores de nombres
+        nombres3[2]="Elisa"
+        console.log(nombres)  //Los dos arrays se han modificado porque realmente son el mismo
+        console.log(nombres3)
+
+        console.log("\Desestructuración)")
+        nombres3=[...nombres]
+        nombres3[2]="Mario"
+        console.log(nombres)  //Los dos arrays son distintos
+        console.log(nombres3)
+
+        //-------------------------------
+        //Contenido
+        //-------------------------------
+        nombres[3]=28
+        nombres[4]=true
+        nombres[5]=(a,b)=>a+b
+        nombres[6]={"nombre":'Pepito', "ciudad":'Valencia'}
+        console.log(nombres)  //Ahora el array tiene texto, numeros, booleanos, objetos y funciones
+
+        let suma=nombres[5](5,7) //No es habitual pero se puede hacer
+        console.log("La suma es: " + suma)
+
+        //-------------------------------
+        //Recorridos con bucles
+        //-------------------------------
+        console.log("\nRecorrido tradicional con bucle for")
+        for(i=0;i<nombres.length;i++)
+        {   console.log(nombres[i])
+
+        }
+        //Repasar funciones de callback
+        // n:elemento actual     i:posicion actual     a:array original
+        //Array.metodo(function(n[,i[,a]]){}) 
+        //Array.metodo((n,i,a)=>{}) 
+        //Cada metodo define un callback "predeterminado" (forEach seria el mas general)
+
+        console.log("\nRecorrido con metodo forEach")
+        nombres.forEach(n=>console.log(n))
+
+        console.log("\nRecorrido con metodo forEach con 3 parametros")
+        nombres.forEach((n,i,a)=>{console.log("elemento actual:" + n) 
+                                  console.log("posicion actual:" + i)
+                                  console.log("arrat original:" + a)
+                                })
+
+        console.log("\nRecorrido con metodo for of")
+        for(n of nombres)
+        {
+            console.log(n)
+        }
+
+        //Retomar con objetos (notacion punto y array asociativo, metodo key)
+        console.log("\nRecorrdo for in (devuelve indices o propiedades)")
+        for(n in nombres)
+        {   console.log(n)
+
+        }
+
+        //-------------------------------
+        //Busquedas
+        //-------------------------------
+        //indexOf---> Sin callback y comparacion estricta
+        console.log("indexOf")
+        let pos=nombres.indexOf("Ana")  //devuelve posicion o -1. Comparacion estricta y poca flexibilidad con objetos
+        console.log("Ana esta en: " + pos)
+
+        pos=nombres.indexOf("Pedro") 
+        console.log("Pedro esta en: " + pos)
+        
+        //find---> Uso de callbacks  (condicion booleana, primer elemento devuelve elemento del array)
+        console.log("find")
+        nom=nombres.find(n=>n=="Ana")  //devuelve objeto encontrado o undefined
+        console.log("Elemento Ana encontrado: " + nom)
+
+        nom=nombres.find(n=>n=="Pedro")  
+        console.log("Elemento Pedro encontrado: " + nom)
+
+        //findIndex---> Uso de callbacks  (condicion booleana, primer elemento devuelve posicion)
+        console.log("findIndex")
+        pos=nombres.findIndex(n=>n=="Ana")  //devuelve posicion o -1
+        console.log("Ana esta en: " + pos)
+
+        pos=nombres.findIndex(n=>n=="Pedro")  
+        console.log("Pedro esta en: " + pos)
+
+        //filter--> Uso de callbacks  (condicion booleana, todos los elementos, devuelve array)
+
+        let elementos=nombres.filter(e=>e.length>2) //elementos cuya logitud es mayor de 2 (solo strings)
+        console.log (elementos)
+
+        elementos=nombres.filter(e=>e.length>6) 
+        console.log (elementos)
+
+
+
+    </script>
+</html>

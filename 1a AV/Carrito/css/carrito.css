@@ -1,0 +1,49 @@
+/* Estilo base para todos los botones */
+.button {
+    padding: 7.5px 15px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+/* Estilos específicos para cada botón por color */
+.sumar {
+    background-color: #007bff;
+}
+
+.sumar:hover {
+    background-color: #0056b3;
+}
+
+.restar {
+    background-color: #ffc107;
+}
+
+.restar:hover {
+    background-color: #e0a800;
+}
+
+.eliminar {
+    background-color: #dc3545;
+}
+
+.eliminar:hover {
+    background-color: #bd2130;
+}
+
+table {
+    border-collapse: collapse; /* Combina bordes de celdas adyacentes */
+    width: 100%; /* Ancho de la tabla */
+}
+
+th, td {
+    border: 1px solid rgba(0, 0, 255, 0); /* Borde de 1 píxel sólido azul con transparencia */
+    padding: 8px; /* Espacio alrededor del contenido de celda */
+    text-align: left; /* Alineación del texto en celdas */
+    box-shadow: 2px 2px 5px rgba(0, 0, 255, 0.2); /* Sombreado azul */
+}

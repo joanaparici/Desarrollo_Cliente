@@ -1,0 +1,50 @@
+<html>
+<body>
+<h2>Arrays de Objetos</h2>
+
+<div id="capa1">
+	<p id="p1"> Parrafo 1 </p>
+	<p id="p2"> Parrafo 2 </p>
+	<p id="p3"> Parrafo 3 </p>	
+</div>
+
+</body>
+
+<script>
+//----------------------------------- Ejemplo HTML Collection ------------------------------------------------------
+
+// HTML Collection: Objeto compuesto por elementos HTML que es iterable y parece un Array pero no lo es
+let parrafos=document.getElementsByTagName("p");
+console.log(parrafos);
+
+//Podemos acceder a los elementos por la posición como un Array
+console.log(parrafos[0]);
+console.log(parrafos[1]);
+console.log(parrafos[2]);
+
+//No podemos utilizar el método forEach porque no es un Array
+//parrafos.forEach(p=>console.log(p));
+
+//Convertimo objeto HTML Collection a un Array
+parrafos=Array.from(parrafos);
+console.log(parrafos);
+parrafos.forEach(p=>console.log(p));
+
+//----------------------------------- Ejemplo Node List ------------------------------------------------------
+
+
+//Node List: Objeto compuesto por nodos del DOM que es iterable y parece un Array pero noo lo es
+let parrafos2=document.getElementById("capa1").childNodes
+console.log(parrafos2);
+
+//Podemos acceder a los elementos por la posición como un Array
+console.log(parrafos2[0]);
+console.log(parrafos2[1]);
+console.log(parrafos2[2]);
+
+//Podemos utilizar el método forEach aunque no es un Array
+parrafos2.forEach(p=>console.log(p));
+
+</script>
+
+</html>

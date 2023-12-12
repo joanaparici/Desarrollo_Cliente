@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fecha de hoy</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>La fecha de hoy es:</h1>
+    </div>
+  </body>
+
+  <script>
+    "use strict";
+    let fechaHoraActual = new Date();
+
+    let año = fechaHoraActual.getFullYear();
+    let mes = fechaHoraActual.getMonth() + 1;
+    let dia = fechaHoraActual.getDate();
+    let weekDay = fechaHoraActual.getDay();
+
+    let meses = [
+      "Diciembre",
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+    ];
+
+    let semana = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+    ];
+
+    let text =
+      "El dia de hoy es: " +
+      semana[weekDay] +
+      " " +
+      dia +
+      " de " +
+      meses[mes] +
+      " del " +
+      año;
+    dia;
+    console.log(text);
+
+    document.getElementById("container").innerHTML += text;
+  </script>
+</html>

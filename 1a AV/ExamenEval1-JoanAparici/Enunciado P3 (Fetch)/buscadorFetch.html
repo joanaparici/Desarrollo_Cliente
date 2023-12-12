@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>DAW</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+
+
+<body>
+<br>
+<h2>Buscador
+    <!-- No deberia estar el onclick en la etiqueta button, pero para ahorraros tiempo y complicaciones lo pasaremos-->
+    <button id="btnBuscarArticuloVendedor" class="btn btn-success" onclick="buscarArticuloVendedor()">Buscar Articulo y
+        Vendedor
+    </button>
+</h2>
+</body>
+
+
+<script>
+    async function buscarArticuloVendedor() {
+        let urlArticulos = 'http://localhost:3000/articulos';
+        let urlVendedores = 'http://localhost:3000/vendedores';
+        let idArticulo = prompt("Introduce el id del articulo a buscar: ");
+
+        try {
+            let articulos = await fetch(urlArticulos).then(response1 => response1.json());
+            let vendedores = await fetch(urlVendedores).then(response2 => response2.json());
+
+            let articuloEncontrado = articulos.find(articulo => articulo.id === idArticulo);
+            if (!articuloEncontrado) {
+                console.log("Articulo id:", idArticulo, "404 (Not Found)");
+                return;
+            }
+
+            let vendedorCaro = articuloEncontrado.vendedores.sort((a, b) => b.precio - a.precio)[0];
+
+            let vendedorEncontrado = vendedores.find(vendedor => vendedor.id === vendedorCaro.idVendedor);
+            if (vendedorEncontrado) {
+                console.log("El nombre del vendedor es: ", vendedorEncontrado.nombre);
+            } else {
+                console.log("Vendedor id:", vendedorCaro.idVendedor, "404 (Not Found)");
+            }
+        } catch (error) {
+            console.log("Error:", error.message);
+        }
+    }
+</script>
+
+
+</html>

@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif; /* Fuente básica para todo el cuerpo del documento */
+    background-color: #316c1b; /* Color de fondo claro para el cuerpo del documento */
+    margin: 0;
+    padding: 0;
+}
+
+.c-title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.characterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra las tarjetas en el contenedor */
+    padding: 20px; /* Espacio alrededor del contenedor */
+}
+
+.c-card {
+    padding: 5px;
+    display: flex;
+    flex: 1 0 calc(20% - 20px);
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #ffffff; /* Color de fondo blanco para las tarjetas */
+    border-radius: 10px; /* Bordes redondeados para las tarjetas */
+    transition: transform 0.3s; /* Transición suave para el efecto hover */
+
+}
+
+.c-card:hover {
+    transform: scale(1.05); /* Efecto de ampliación al pasar el cursor sobre la tarjeta */
+}
+
+.c-card img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    border-top-left-radius: 10px; /* Bordes redondeados para la parte superior de la imagen */
+    border-top-right-radius: 10px;
+}
+
+.c-card p {
+    padding: 10px; /* Espacio alrededor del texto dentro de la tarjeta */
+    margin: 0; /* Elimina el margen predeterminado de los párrafos */
+}

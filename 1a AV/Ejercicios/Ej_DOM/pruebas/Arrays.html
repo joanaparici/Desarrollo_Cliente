@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //Recorrer array con forEach y buscar uno de los elementos, un push, la suma de sus elementeros, etc...
+    // let a = [1,2,1,9,2,1,9,8,1]
+    
+    // a.forEach(e=>)
+
+    //MI MÉTODO
+    // console.log("Filtrar elementeros array")
+    // let array = [7, 4, 4, 2, 7, 4, 9, 2];
+    // let unicos = array.filter((element, posicion, lista) => lista.indexOf(element) === posicion);
+    // console.log(unicos);
+
+    //MÉTODO SALVA    
+    console.log("Filtrar elementeros array")
+    let array = [7, 4, 4, 2, 7, 4, 9, 2];
+    let unicos = array.filter((element, posicion, lista) => lista.findIndex(n=>n==element) == posicion);
+    console.log(unicos);
+
+
+    // element= array.findposicion(n=> n==)
+
+
+
+</script>
+</html>

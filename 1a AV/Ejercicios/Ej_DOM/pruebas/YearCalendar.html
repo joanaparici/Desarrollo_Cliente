@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+</head>
+<body>
+    <div>
+        <h1>CALENDARIO</h1>
+        <table border="1" id="container">
+            <tbody id="calendar-body">
+              
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Array con los nombres de los meses
+        let months = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre",
+        ];
+
+        // Array con los nombres de los días de la semana
+        let weekdays = ["L", "M", "X", "J", "V", "S", "D"];
+
+        // Obtener el elemento tbody de la tabla
+        const calendarBody = document.getElementById("calendar-body");
+
+        // Obtener la fecha y hora actual
+        let fechaHoraActual = new Date();
+
+        // Obtener el año actual
+        let año = fechaHoraActual.getFullYear();
+
+        // Crear una fila para cada conjunto de 5 meses
+        for (let i = 0; i < 12; i += 5) {
+            const filaMeses = document.createElement("tr");
+
+            // Recorrer los próximos 5 meses
+            for (let j = i; j < i + 5 && j < 12; j++) {
+                const mes = j;
+                // Crear una fila vacía como separador entre los meses
+                if (j !== i) {
+                    const filaSeparador = document.createElement("tr" + "tr");
+                    const celdaSeparador = document.createElement("td");
+                    celdaSeparador.setAttribute("colspan", "7");
+                    filaSeparador.appendChild(celdaSeparador);
+                    calendarBody.appendChild(filaSeparador);
+                }
+
+                // Crear una fecha para el primer día del mes actual
+                const primerDiaMes = new Date(año, mes, 1);
+
+                // Obtener el día de la semana del primer día del mes (0: Domingo, 1: Lunes, ...)
+                let diaSemana = primerDiaMes.getDay();
+
+                // Ajustar para que el mes comience en el quinto día de la semana (el viernes)
+                let blancos = (diaSemana - 1); // El viernes es el quinto día
+
+                // Obtener el último día del mes actual
+                const ultimoDiaMes = new Date(año, mes + 1, 0).getDate();
+                let diaActual = 1;
+
+                // Crear fila para el encabezado del mes
+                const filaEncabezado = document.createElement("tr");
+                const celdaEncabezado = document.createElement("td");
+                celdaEncabezado.setAttribute("colspan", "7");
+                celdaEncabezado.textContent = months[mes] + " " + año;
+                filaEncabezado.appendChild(celdaEncabezado);
+                calendarBody.appendChild(filaEncabezado);
+
+                // Crear fila para los días de la semana
+                const filaDiasSemana = document.createElement("tr");
+                weekdays.forEach(function (day) {
+                    const celdaDiaSemana = document.createElement("td");
+                    celdaDiaSemana.textContent = day;
+                    filaDiasSemana.appendChild(celdaDiaSemana);
+                });
+                calendarBody.appendChild(filaDiasSemana);
+
+                // Crear filas y celdas para el calendario
+                for (let semana = 0; diaActual <= ultimoDiaMes; semana++) {
+                    const fila = document.createElement("tr");
+
+                    // Llenar celdas vacías para los días anteriores al primer viernes del mes
+                    for (let diaSemana = 0; diaSemana < 7; diaSemana++) {
+                        const celdaDia = document.createElement("td");
+
+                        if ((semana === 0 && diaSemana < blancos) || diaActual > ultimoDiaMes) {
+                            celdaDia.textContent = "";
+                        } else {
+                            celdaDia.textContent = diaActual;
+                            diaActual++;
+                        }
+
+                        fila.appendChild(celdaDia);
+                    }
+
+                    // Agregar la fila al cuerpo del calendario
+                    calendarBody.appendChild(fila);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

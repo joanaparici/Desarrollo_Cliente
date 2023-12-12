@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Point</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header > div {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-info {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+            padding: 10px 0;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .cart-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <span class="top-info">🚚 Envío gratuito desde 49 €</span>
+        <span class="top-info">🔄 Devolución gratuita</span>
+    </div>
+    <img src="" alt="Tennis Point Logo" />
+    <span>📞 (+34) 93 179 05 33</span>
+</header>
+
+<nav class="navbar">
+    <div class="cart-icon"></div>
+    <span>Cesta de la compra</span>
+    <span>1 Mis datos</span>
+    <span>2 Modalidades de pago</span>
+    <span>3 Confirmación pedido</span>
+</nav>
+
+<div class="cart-empty">
+    <h1>Su carrito de compras está vacío</h1>
+    <a href="#">Volver a la página anterior</a> | <a href="#">Continuar comprando »</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+  <body>
+    <div id="contenedor"></div>
+    <button onclick="obtenerNumero()">ObtenerNumero</button>
+  </body>
+
+  <script>
+    "use strict";
+
+    function obtenerNumero() {
+      let numero = prompt("Dime un número...");
+      let texto = "<b>Tabla de Multiplicar del " + numero;
+      document.getElementById("contenedor").innerHTML = texto;
+      createTable(numero);
+    }
+
+    function createTable(numero) {
+      let miTabla = "<table border = 1>";
+        let contador=0;
+        
+    for (let i = num1; i < num2; i++) {
+        let unaTabla +=
+
+        
+    }
+      for (let i = 1; i <= 10; i++) {
+        miTabla +=
+          "<tr><td>" +
+          numero +
+          "</td><td>" +
+          "X" +
+          "</td><td>" +
+          i +
+          "</td><td>" +
+          "=" +
+          "</td><td>" +
+          numero * i +
+          "</td></tr>";
+        
+      }
+      document.getElementById("contenedor").innerHTML += miTabla;
+    }
+  </script>
+</html>

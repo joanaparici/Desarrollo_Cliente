@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+</head>
+<body>
+    <div>
+        <h1>CALENDARIO</h1>
+        <h2 id="actualMonth"></h2>
+        <table border="1" id="container">
+            <thead>
+                <tr>
+                    <th>L</th>
+                    <th>M</th>
+                    <th>X</th>
+                    <th>J</th>
+                    <th>V</th>
+                    <th>S</th>
+                    <th>D</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+              
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    
+        // Obtener la fecha y hora actual
+        let fechaHoraActual = new Date();
+
+        // Obtener el año y el mes actual
+        let año = fechaHoraActual.getFullYear();
+        let mes = fechaHoraActual.getMonth();
+
+        // Array con los nombres de los meses
+        let months = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre",
+        ];
+
+
+        
+        
+        let text = months[mes] + " " + año;
+        document.getElementById("actualMonth").innerHTML = text;
+
+        // Obtener el elemento tbody de la tabla
+        const calendarBody = document.getElementById("calendar-body");
+
+        // Crear una fecha para el primer día del mes actual
+        const primerDiaMes = new Date(año, mes, 1);
+
+        // Obtener el día de la semana del primer día del mes (0: Domingo, 1: Lunes, ...)
+        let diaSemana = primerDiaMes.getDay();
+
+        // Ajustar para que el mes comience en el quinto día de la semana (el viernes)
+        let blancos = (diaSemana - 1); // El viernes es el quinto día
+
+        // Obtener el último día del mes actual
+        const ultimoDiaMes = new Date(año, mes + 1, 0).getDate();
+
+        // Variable para contar el día actual
+        let diaActual = 1;
+
+        // Crear filas y celdas para el calendario
+        for (let semana = 0; diaActual <= ultimoDiaMes; semana++) {
+            const fila = document.createElement("tr");
+
+            // Llenar celdas vacías para los días anteriores al primer viernes del mes
+            for (let diaSemana = 0; diaSemana < 7; diaSemana++) {
+                const celdaDia = document.createElement("td");
+
+                // Si estamos en la primera semana y el día de la semana actual es menor que el primer viernes del mes,
+                // o si hemos superado el último día del mes, dejamos la celda vacía
+                if ((semana === 0 && diaSemana < blancos) || diaActual > ultimoDiaMes) {
+                    celdaDia.textContent = "";
+                } else {
+                    celdaDia.textContent = diaActual;
+                    diaActual++;
+                }
+
+                fila.appendChild(celdaDia);
+            }
+
+            // Agregar la fila al cuerpo del calendario
+            calendarBody.appendChild(fila);
+        }
+    </script>
+</body>
+</html>

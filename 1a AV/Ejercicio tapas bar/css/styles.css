@@ -1,0 +1,87 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.main-container {
+    width: 80%;
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+header, footer {
+    background: #5be300;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.tapas-display {
+    display: flex;
+    justify-content: space-between;
+}
+
+.featured-image {
+    width: 40%;
+    padding: 20px;
+}
+
+.tapas-selection {
+    width: 55%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tapas {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tapas img {
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tapas h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.tapas span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.btnTotal {
+    margin-top: 20px;
+    background-color: #333;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btnTotal:hover {
+    background-color: #555;
+}
+
+.precio {
+    margin-top: 20px;
+    font-size: 24px;
+}

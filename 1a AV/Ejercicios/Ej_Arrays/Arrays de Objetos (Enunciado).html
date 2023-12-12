@@ -1,0 +1,180 @@
+<html>
+<body>
+<h2>Arrays de Objetos</h2>
+
+<button onclick="notasAlumno()">Notas de un alumno</button><br><p>
+
+<button onclick="subeUnPunto()">Subir un punto en cada asignatura</button><br><p>
+
+<button onclick="alumnosCiudad()">Buscar alumnos de una ciudad</button>
+<button onclick="alumnosCurso()">Buscar alumnos de un curso</button><br><p>
+
+<button onclick="ordenaEdad()">Ordenar alumnos por edad</button>
+<button onclick="ordenaNombreAsc()">Ordenar alumnos por nombre ascendente</button>
+<button onclick="ordenaNombreDesc()">Ordenar alumnos por nombre descendente</button><br><p>
+
+<button onclick="borraAlumno()">Borrar alumno</button><br><p>
+
+<button onclick="nuevoAlumno()">Nuevo alumno</button>
+<button onclick="nuevaAsignatura()">Nueva asignatura</button>
+
+</body>
+
+<script>
+"use strict"
+let alumnos=[{'codigo':'DAW-1-2020',
+              'nombre':'Pepe',
+              'ciudad':'Valencia',
+			  'calificaciones':[{'asignatura':'PRG','nota':9},
+			                    {'asignatura':'GBD','nota':6}, 
+								{'asignatura':'ING','nota':4},
+								{'asignatura':'FOL','nota':3}
+								],
+			  'edad':24},
+			  {'codigo':'DAW-2-2020',
+			  'nombre':'Juan',
+              'ciudad':'Castellon',
+			  'calificaciones':[{'asignatura':'DWC','nota':4},
+			                    {'asignatura':'DWS','nota':6}, 
+								{'asignatura':'DAW','nota':7},
+								{'asignatura':'DIW','nota':8},
+								{'asignatura':'ING','nota':9},
+			                    {'asignatura':'EIE','nota':2}
+								],
+			  'edad':28},
+			  {'codigo':'DAW-1-2019',
+			  'nombre':'Ana',
+              'ciudad':'Valencia',
+			  'calificaciones':[{'asignatura':'PRG','nota':6},
+			                    {'asignatura':'GBD','nota':2}, 
+								{'asignatura':'ING','nota':6},
+								{'asignatura':'FOL','nota':2}
+								],
+			  'edad':22},
+			  {'codigo':'DAW-2-2020',
+			  'nombre':'Maria',
+              'ciudad':'Castellon',
+			  'calificaciones':[{'asignatura':'DWC','nota':4},
+			                    {'asignatura':'DWS','nota':6}, 
+								{'asignatura':'DAW','nota':7},
+								{'asignatura':'DIW','nota':8},
+								{'asignatura':'ING','nota':4},
+			                    {'asignatura':'EIE','nota':1}
+								],
+			  'edad':30}
+			]
+
+
+// Función para consultar las notas de un alumno
+function notasAlumno() {
+    // Solicitar al usuario el nombre del alumno mediante un prompt
+    const nombreAlumno = prompt("Ingrese el nombre del alumno:");
+
+    // Buscar al alumno en el array 'alumnos' utilizando el método 'find'
+    const alumnoEncontrado = alumnos.find(alumno => alumno.nombre === nombreAlumno);
+
+    // Comprobar si el alumno fue encontrado
+    if (alumnoEncontrado) {
+        // Calcular la nota media del alumno
+        let sumaNotas = 0;
+
+		// Iteramos a través de todas las calificaciones del alumno encontrado
+		for (const calificacion of alumnoEncontrado.calificaciones) {
+			// Sumamos la nota de cada asignatura a la variable 'sumaNotas'
+			sumaNotas += calificacion.nota;
+		}
+
+		// Calculamos la nota media dividiendo la suma total de las notas entre la cantidad de asignaturas
+		const notaMedia = sumaNotas / alumnoEncontrado.calificaciones.length;
+
+
+        // Encontrar la mejor y peor nota del alumno
+        let mejorNota = alumnoEncontrado.calificaciones[0];
+        let peorNota = alumnoEncontrado.calificaciones[0];
+
+		// Iteramos a través de todas las calificaciones del alumno encontrado
+		for (const calificacion of alumnoEncontrado.calificaciones) {
+			// Comparamos la nota de la calificación actual con la mejorNota actual
+			if (calificacion.nota > mejorNota.nota) {
+				// Si la nota actual es mayor que la mejorNota actual, actualizamos mejorNota
+				mejorNota = calificacion;
+			}
+			
+			// Comparamos la nota de la calificación actual con la peorNota actual
+			if (calificacion.nota < peorNota.nota) {
+				// Si la nota actual es menor que la peorNota actual, actualizamos peorNota
+				peorNota = calificacion;
+			}
+		}
+
+
+        // Mostrar información sobre las notas del alumno en la consola
+        console.log(`Notas de ${nombreAlumno}:`);
+        console.log(`Nota Media: ${notaMedia}`);
+        console.log(`Mejor Nota: ${mejorNota.nota} en ${mejorNota.asignatura}`);
+        console.log(`Peor Nota: ${peorNota.nota} en ${peorNota.asignatura}`);
+    } else {
+        // Mostrar un mensaje de error en la consola si el alumno no fue encontrado
+        console.error("El alumno no existe.");
+    }
+}
+
+function subeUnPunto(){
+	alumnos.forEach(a=> a.calificaciones.map(n=>n.nota++))
+	console.log(alumnos)
+}
+
+function alumnosCiudad(){
+	let ciudad = prompt('Dime ciudad: ')
+	let alumnosCiudad = alumnos.filter(a => a.ciudad === ciudad);
+	if (alumnosCiudad.length == 0) {
+		console.log('No hay alumnos de esa ciudad')
+	}else{
+		alumnosCiudad.forEach(a=>console.log(a.nombre))
+	}
+}
+
+function alumnosCurso() {
+    let curso = prompt('Dime Curso: ');
+    let alumnosCurso = alumnos.filter(a => a.codigo.split('-')[1] === curso);
+
+    if (alumnosCurso.length > 0) {
+        alumnosCurso.forEach(a => console.log(a.nombre));
+    } else {
+        console.log('No hay alumnos de ese curso');
+    }
+}
+
+function ordenaEdad(){
+	alumnos.sort((a,b)=> b.edad - a.edad ).forEach(a => console.log(a.nombre + " tiene " + a.edad + " años"));
+}
+
+
+
+function ordenaNombreAsc(){
+	alumnos.sort((a,b) => a-b).forEach(a => console.log(a.nombre));
+}
+
+function ordenaNombreDesc(){
+	alumnos.sort((a,b) => b-a).forEach(a => console.log(a.nombre));
+}
+
+function borraAlumno(){
+	let alumno = prompt('Dime alumno para borrar: ')
+	let alumnoBorrado = alumnos.findIndex(a => a.nombre === nombre);
+	alumnos.splice(alumnoBorrado,1)
+}
+			  
+function nuevoAlumno() {
+    let nombre = prompt('Dime nombre del alumno: ');
+    let edad = parseInt(prompt('Dime edad del alumno: '));
+    let ciudad = prompt('Dime ciudad del alumno: ');
+    let codigo = prompt('Dime codigo del curso del alumno: ');
+    let calificaciones = [];
+
+    alumnos.push({ nombre, edad, ciudad, codigo, calificaciones });
+}
+
+</script>
+
+</html>

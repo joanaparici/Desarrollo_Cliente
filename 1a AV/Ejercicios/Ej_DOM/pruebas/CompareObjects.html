@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare Objects</title>
+  </head>
+  <body>
+    <script>
+      let npc = { nombre: "Jorge", edad: "14", genero: "palmera" };
+      let titan = { nombre: "Chacon", edad: "20", genero: "españa" };
+      let npc2 = { nombre: "Jorge", edad: "14", genero: "palmera" };
+      let npc3 = { nombre: npc.nombre, edad: npc.edad, genero: npc.genero };
+      let npc4 = npc;
+      let npc5 = {edad: "14", genero: "palmera" , nombre: "Carlos" };
+
+      //Así hace la  comparación de JS, que solo son iguales si creo obj2 a partir de obj1 directamente. Aqunque lo
+      //haga campo por campo la ocupación de memoria no es la misma, por lo tanto no son iguales.
+      function compareObjects(obj1, obj2) {
+        let keys1 = Object.keys(obj1).sort(); //keys saca el nombre de las propiedades ( nombre, edad, genero)
+        let keys2 = Object.keys(obj2).sort(); //sort ordena las propiedades
+        
+        if (keys1.length != keys2.length) { //comprueba la lorgitud de las propiedades
+          return false;
+        }
+
+        if (keys1.join() != keys2.join()) { //Pasa el array a cadena de texto
+            return false;
+        }
+
+        for (let p of keys1) {          //Cmprueba que el contenido de las propiedades sea el mismo
+            if (obj1[p] != obj2[p]) {
+                return false;
+            }
+        }
+
+        return true;        //Si pasa todas la pruebas da true, sinó a la que falle sale y da false
+      }
+
+      console.log(compareObjects(npc, npc5));
+    </script>
+  </body>
+</html>

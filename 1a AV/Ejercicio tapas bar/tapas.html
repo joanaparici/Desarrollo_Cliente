@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tapas</title>
+    <link rel="stylesheet" href="./css/styles.css"/>
+</head>
+
+<body>
+<div class="main-container">
+    <header>
+        <h1>Menu de Tapas</h1>
+    </header>
+    <section class="tapas-display">
+        <figure>
+            <img src="./assets/blanco.png" alt="Blanco" class="blanco"/>
+        </figure>
+        <div class="tapas-selection">
+            <div class="tapas">
+                <img src="./assets/tapa1.jpg" alt="Tapa tortilla"/>
+                <div>
+                    <h3>Tapa tortilla</h3>
+                    <span>5€</span>
+                    <input type="checkbox" id="tapa1" value="5"/>
+                </div>
+            </div>
+            <div class="tapas">
+                <img src="./assets/tapa2.jpg" alt="Tapa tortilla jamón"/>
+                <div>
+                    <h3>Tapa tortilla jamón</h3>
+                    <span>7€</span>
+                    <input type="checkbox" id="tapa2" value="7"/>
+                </div>
+            </div>
+            <div class="tapas">
+                <img src="./assets/tapa3.jpg" alt="Tapa tortilla y vino"/>
+                <div>
+                    <h3>Tapa tortilla y vino</h3>
+                    <span>9€</span>
+                    <input type="checkbox" id="tapa3" value="9"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="btnTotal">Calcular total</button>
+        <div class="total-price">
+            <h2 class="precio">TOTAL:</h2>
+        </div>
+    </footer>
+</div>
+
+<script src="./js/tapas.js"></script>
+</body>
+
+</html>

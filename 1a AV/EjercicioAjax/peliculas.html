@@ -1,0 +1,132 @@
+<body>
+<button onclick="getPeliculas()">Ver peliculas</button>
+<button onclick="getPelicula()">Ver pelicula</button>
+<button onclick="postPelicula()">Crear pelicula</button>
+<button onclick="putPelicula()">Actualizar pelicula</button>
+<button onclick="deletePelicula()">Borrar pelicula</button>
+</body>
+<script>
+    function getPeliculas() {
+        let xhr = new XMLHttpRequest();
+        let url = 'http://localhost:3000/peliculas';
+
+        xhr.open('GET', url);
+        xhr.responseType = 'json';
+        xhr.send();
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                let peliculas = xhr.response;
+                console.log(peliculas);
+                document.body.innerHTML = "";
+                peliculas.forEach(p => document.body.innerHTML += `<p>${p.title}</p>`);
+            } else {
+                document.body.innerHTML = `Error: ${xhr.statusText} CÓDIGO: ${xhr.status}`;
+            }
+        };
+
+        xhr.onerror = () => console.log("Error...");
+    }
+
+
+    function getPelicula() {
+        let id = prompt("Dime pelicula")
+        let xhr = new XMLHttpRequest();
+        let url = 'http://localhost:3000/peliculas/' + id;
+
+        xhr.open('GET', url);
+        xhr.responseType = 'json';
+        xhr.send(); //Si es un post  un put o un patch tengo que mandar el dato
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                let peliculas = xhr.response;
+                console.log(peliculas);
+                document.body.innerHTML += peliculas.title
+            } else {
+                document.body.innerHTML = `Error: ${xhr.statusText} CÓDIGO: ${xhr.status}`;
+            }
+        };
+        xhr.onerror = () => console.log("Error...");
+    }
+
+    function deletePelicula() {
+        let id = prompt("Dime pelicula")
+        let xhr = new XMLHttpRequest();
+        let url = 'http://localhost:3000/peliculas/' + id;
+
+        xhr.open('DELETE', url);
+        xhr.responseType = 'json';
+        xhr.send();
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                let peliculas = xhr.response;
+                console.log(peliculas);
+                document.body.innerHTML += "<p>Pelicula borrada: </p>" + id
+            } else {
+                document.body.innerHTML = `Error: ${xhr.statusText} CÓDIGO: ${xhr.status}`;
+            }
+        };
+
+        xhr.onerror = () => console.log("Error...");
+    }
+
+    function postPelicula() {
+        let xhr = new XMLHttpRequest();
+        let url = 'http://localhost:3000/peliculas'
+
+        let pelicula = {
+
+            "id": parseInt(prompt("Dime id:")),
+            "title": prompt("Dime titulo:"),
+            "runtime": parseInt(prompt("Dime duracion"))
+        }
+
+        xhr.open('POST', url);
+        xhr.responseType = 'json'; //No sería necesario porque la inserción no tiene que devolver nada;
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify(pelicula));
+
+        xhr.onload = () => {
+            if (xhr.status === 201) {
+                let peliculas = xhr.response;
+                console.log(peliculas);
+                document.body.innerHTML += "<p>Pelicula creada:</p>" + pelicula.title
+            } else {
+                document.body.innerHTML = `Error: ${xhr.statusText} CÓDIGO: ${xhr.status}`;
+            }
+        };
+
+        xhr.onerror = () => console.log("Error...");
+    }
+
+    function putPelicula() {
+        let xhr = new XMLHttpRequest();
+        id = prompt("Dime id:")
+        let url = 'http://localhost:3000/peliculas/' + id
+
+        let pelicula = {
+            "title": prompt("Dime nuevo titulo:"),
+            "runtime": parseInt(prompt("Dime nueva duracion"))
+        }
+
+        xhr.open('PUT', url);
+        xhr.responseType = 'json'; //No sería necesario porque la inserción no tiene que devolver nada;
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(JSON.stringify(pelicula));
+
+        xhr.onload = () => {
+            if (xhr.status === 200 || xhr.status === 201) {
+                let peliculas = xhr.response;
+                console.log(peliculas);
+                document.body.innerHTML += "<p>Pelicula modificada:</p>" + pelicula.title
+            } else {
+                document.body.innerHTML = `Error: ${xhr.statusText} CÓDIGO: ${xhr.status}`;
+            }
+        };
+
+        xhr.onerror = () => console.log("Error...");
+    }
+
+</script>
