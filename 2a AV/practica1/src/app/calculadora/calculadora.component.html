@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>{{ titulo }}</h1>
+  <form>
+    <div class="form-group">
+      <label>Número 1</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Escribe el primero número"
+        [(ngModel)]="num1"
+        name="num2"
+      />
+
+      <label>Número 2</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Escribe el segundo número"
+        [(ngModel)]="num2"
+        name="num2"
+      />
+
+      <button type="submit" class="btn btn-primary" (click)="(sumarNumeros())">Sumar</button> 
+      <!-- Importante el () de la función -->
+
+      <p>Resultado: {{ total }}</p>
+    </div>
+  </form>
+</div>

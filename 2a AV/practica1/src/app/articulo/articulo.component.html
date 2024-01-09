@@ -1,14 +1,21 @@
-<h1>misArticulosComponent (Hijo)</h1>
+<!-- <h1>misArticulosComponent (Hijo)</h1>
   <h3>   (Interpolando datos de un array de objetos)</h3>
-  <h3>   (property binding disabled en boton)</h3>
+  <h3>   (property binding disabled en boton)</h3> -->
+  <!-- <button (click)="choosePosition()" class="btn btn-success">Seleccionar posición del articulo</button> -->
 
-
-<div class="card" style="width: 18rem;">
-    <img src="assets/{{misArticulos[2].id}}.jpg" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title">{{misArticulos[2].nombre}}</h5>
-      <p class="card-text">{{misArticulos[2].descripcion}}</p>
-      <b><p class="card-text text-center">{{misArticulos[2].precio}}</p></b>
-    </div>
-    <button id="m1" class="btn btn-primary" [disabled]="botonActivo">comprar</button>
+<div class="row row-cols-1 row-cols-md-6 g-4 w-100 p-3">
+<div *ngFor="let art of misArticulos" class="card" style="width: 18rem;">
+  <img src="assets/{{art.id}}.jpg" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{art.nombre}}</h5>
+    <p class="card-text">{{art.descripcion}}</p>
+    <b><p class="card-text text-center">{{art.precio}} €</p></b>
   </div>
+  <button id="m1" class="btn btn-success" [disabled]="botonApagado">comprar</button>
+<div>
+  <button id="m1" class="btn btn-primary" (click)="activar()">activar</button>
+  <button id="m1" class="btn btn-danger" (click)="desactivar()">desactivar</button>
+</div>
+
+</div>
+</div>
